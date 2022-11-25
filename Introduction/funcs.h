@@ -1,0 +1,1 @@
+int dummy_adder(int a, int b, int c);
