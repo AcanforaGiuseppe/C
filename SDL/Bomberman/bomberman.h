@@ -1,61 +1,60 @@
-// Definition of a structure and giving it an "alias" -> vec2_t
 typedef struct vec2
 {
-    int x;
-    int y;
+	int x;
+	int y;
 } vec2_t;
 
 typedef struct player
 {
-    vec2_t position;
-    unsigned int number_of_lifes;
-    unsigned int number_of_bombs;
-    unsigned int score;
-    unsigned int speed;
+	vec2_t position;
+	unsigned int number_of_lifes;
+	unsigned int number_of_bombs;
+	unsigned int score;
+	unsigned int speed;
 } player_t;
 
 typedef struct bomb
 {
-    vec2_t position;
-    unsigned int range;
-    unsigned int cooldown;
+	vec2_t position;
+	unsigned int range;
+	unsigned int cooldown;
 } bomb_t;
 
-enum cell_type
+enum CellType
 {
-    GROUND = 0,
-    WALL,
-    UNDESTROYABLE_WALL,
-    TELEPORT
+	Ground,
+	Wall,
+	Undestroyable_Wall,
+	Teleport
 };
 
-enum bonus_type
+enum BonusType
 {
-    NONE = 0,
-    SPEED,
-    BOMB2,
-    BOMB3
+	None,
+	Speed,
+	Bomb2,
+	Bomb3
 };
 
-enum enemy_type
+enum EnemyType
 {
-    BAT,
-    BALOON
+	Bat,
+	Balloon
 };
 
 typedef struct cell
 {
-    cell_type type;
-    bonus_type bonus;
+	enum CellType type;
+	enum BonusType bonus;
 } cell_t;
 
 typedef struct enemy
 {
-    vec2_t position;
-    enemy_type type;
+	vec2_t position;
+	enum EnemyType type;
 } enemy_t;
 
 typedef struct game_mode
 {
-    unsigned int timer;
+	unsigned int timer;
 } game_mode_t;

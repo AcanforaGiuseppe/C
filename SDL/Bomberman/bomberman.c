@@ -1,40 +1,132 @@
 #include "bomberman.h"
+#define SDL_MAIN_HANDLED
+#include <SDL.h>
 
-static void bomberman_game_mode_init(game_mode_t *game_mode)
+#define STB_IMAGE_IMPLEMENTATION
+#include "stb_image.h"
+
+static void bomberman_game_mode_init(game_mode_t* game_mode)
 {
-    game_mode->timer = 60;
+	game_mode->timer = 60;
 }
 
-static void bomberman_map_init(cell_t *map)
+static void bomberman_map_init(cell_t* map)
 { }
 
-static void bomberman_player_init(player_t *player)
+static void bomberman_player_init(player_t* player)
 {
-    player->position.x = 0;
-    player->position.y = 0;
-    player->number_of_lifes = 1;
-    player->number_of_bombs = 1;
-    player->score = 0;
-    player->speed = 1;
+	player->position.x = 0;
+	player->position.y = 0;
+	player->number_of_lifes = 1;
+	player->number_of_bombs = 1;
+	player->score = 0;
+	player->speed = 1;
 }
 
-int main(int argc, char **argv)
+int bomberman_graphics_init(SDL_Window** window, SDL_Renderer** renderer, SDL_Texture** texture)
 {
-    game_mode_t game_mode;
-    cell_t map[64 * 64];
-    player_t player;
+	if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO | SDL_INIT_GAMECONTROLLER) != 0)
+	{
+		SDL_Log("Unable to initialize SDL: %s", SDL_GetError());
+		return -1;
+	}
 
-    bomberman_game_mode_init(&game_mode);
+	*window = SDL_CreateWindow("SDL is active!", 100, 100, 512, 512, 0);
+	if (!*window)
+	{
+		SDL_Log("Unable to create window: %s", SDL_GetError());
+		SDL_Quit();
+		return -1;
+	}
 
-    bomberman_map_init(map);
+	*renderer = SDL_CreateRenderer(*window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+	if (!*renderer)
+	{
+		SDL_Log("Unable to create renderer: %s", SDL_GetError());
+		SDL_DestroyWindow(*window);
+		SDL_Quit();
+		return -1;
+	}
 
-    bomberman_player_init(&player);
+	int width;
+	int height;
+	int channels;
+	unsigned char* pixels = stbi_load("emoji.png", &width, &height, &channels, 4);
 
-    // game loop
-    for (;;)
-    {
-        
-    }
+	if (!pixels)
+	{
+		SDL_Log("Unable to open image");
+		SDL_DestroyRenderer(*renderer);
+		SDL_DestroyWindow(*window);
+		SDL_Quit();
+		return -1;
+	}
 
-    return 0;
+	SDL_Log("Image width: %d height: %d channels: %d", width, height, channels);
+
+	*texture = SDL_CreateTexture(*renderer, SDL_PIXELFORMAT_RGBA32, SDL_TEXTUREACCESS_STATIC, width, height);
+
+	if (!*texture)
+	{
+		SDL_Log("Unable to create texture: %s", SDL_GetError());
+		free(pixels);
+		SDL_DestroyRenderer(*renderer);
+		SDL_DestroyWindow(*window);
+		SDL_Quit();
+		return -1;
+	}
+
+	SDL_UpdateTexture(*texture, NULL, pixels, width * 4);
+	SDL_SetTextureAlphaMod(*texture, 255);
+	SDL_SetTextureBlendMode(*texture, SDL_BLENDMODE_BLEND);
+	free(pixels);
+
+	return 0;
+}
+
+int main(int argc, char** argv)
+{
+	game_mode_t game_mode;
+	cell_t map[64 * 64];
+	player_t player;
+
+	SDL_Window* window;
+	SDL_Renderer* renderer;
+	SDL_Texture* texture;
+
+	bomberman_game_mode_init(&game_mode);
+	bomberman_map_init(map);
+	bomberman_player_init(&player);
+
+	if (bomberman_graphics_init(&window, &renderer, &texture))
+		return -1;
+
+	// Game loop
+	int running = 1;
+
+	while (running)
+	{
+		SDL_Event event;
+		while (SDL_PollEvent(&event))
+		{
+			if (event.type == SDL_QUIT)
+				running = 0;
+		}
+
+		SDL_PumpEvents();
+		const Uint8* keys = SDL_GetKeyboardState(NULL);
+		player.position.x += keys[SDL_SCANCODE_RIGHT];
+		player.position.x -= keys[SDL_SCANCODE_LEFT];
+		player.position.y += keys[SDL_SCANCODE_DOWN];
+		player.position.y -= keys[SDL_SCANCODE_UP];
+
+		SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+		SDL_RenderClear(renderer);
+
+		SDL_Rect target_rect = { player.position.x, player.position.y, 32, 32 };
+		SDL_RenderCopy(renderer, texture, NULL, &target_rect);
+		SDL_RenderPresent(renderer);
+	}
+
+	return 0;
 }
