@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <stdint.h>
 #include <stdio.h>
-#include "linkedList.h"
+#include "linkedlist.h"
 
 list_node_t* list_get_tail(list_node_t** head)
 {
