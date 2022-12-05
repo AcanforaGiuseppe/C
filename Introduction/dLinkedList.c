@@ -3,8 +3,8 @@
 #include <stdio.h>
 #include <stddef.h>
 #include <time.h>
-#include "doubleLinked.h"
-#include "linkedList.h"
+#include "dLinkedList.h"
+#include "linkedlist.h"
 
 #define RAND(upper,lower) ((rand() % (upper - lower + 1)) + lower) 
 
