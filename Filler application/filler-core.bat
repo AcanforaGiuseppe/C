@@ -5,7 +5,8 @@ set TARGET_PATH=%BAT_BASE_PATH%\bin
 set SRC_PATH=%PRJ_PATH%\src
 set INC_PATH="%PRJ_PATH%\include"
 
-if exist "%TARGET_PATH%" (
+if exist "%TARGET_PATH%"
+(
     RD /S /Q "%TARGET_PATH%"
 )
 

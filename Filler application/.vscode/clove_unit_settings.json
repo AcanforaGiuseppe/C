@@ -1,0 +1,5 @@
+{
+    "testSourcesPath" : "filler-test",
+    "buildCommand" : "filler-test.bat",
+    "testExecPath" : "bin\\test.exe"
+}
