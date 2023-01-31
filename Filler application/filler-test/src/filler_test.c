@@ -2,17 +2,15 @@
 #include "clove-unit.h"
 #include "filler.h"
 
-CLOVE_TEST(FillOnePixelImageWithSuccess)
+CLOVE_TEST(FillOnePixelImageWithSuccess) 
 {   
     uint8_t source[3] = {255, 0, 0};
     int width = 1;
     int height = 1;
     int channels = 3;
-
     int pixel_x = 0;
     int pixel_y = 0;
     filler_color_t green = {0, 255, 0};
-
     uint8_t* filled = filler_execute(source, width, height, channels, pixel_x, pixel_y, green);
 
     CLOVE_INT_EQ(0, filled[0]);
@@ -40,12 +38,11 @@ CLOVE_TEST(FillTwoPixelImage_WithTwoPixelsFilled)
     int width = 2;
     int height = 1;
     int channels = 3;
-
     int pixel_x = 1;
     int pixel_y = 0;
     filler_color_t green = {0, 255, 0};
-
     uint8_t* filled = filler_execute(source, width, height, channels, pixel_x, pixel_y, green);
+
     CLOVE_INT_EQ(  0, filled[0]);
     CLOVE_INT_EQ(255, filled[1]);
     CLOVE_INT_EQ(  0, filled[2]);
@@ -66,14 +63,12 @@ CLOVE_TEST(FillNinePixelImage_WithOnlyFivePixelsFilled)
     int width = 3;
     int height = 3;
     int channels = 3;
-
     int pixel_x = 1;
     int pixel_y = 1;
     filler_color_t green = {0, 255, 0};
-
     uint8_t* filled = filler_execute(source, width, height, channels, pixel_x, pixel_y, green);
     
-    // Row 1
+    //Row1
     CLOVE_INT_EQ(  0, filled[0]);
     CLOVE_INT_EQ(  0, filled[1]);
     CLOVE_INT_EQ(255, filled[2]);
@@ -86,7 +81,7 @@ CLOVE_TEST(FillNinePixelImage_WithOnlyFivePixelsFilled)
     CLOVE_INT_EQ(  0, filled[7]);
     CLOVE_INT_EQ(255, filled[8]);
 
-    // Row 2
+    //Row2
     CLOVE_INT_EQ(  0, filled[9]);
     CLOVE_INT_EQ(255, filled[10]);
     CLOVE_INT_EQ(  0, filled[11]);
@@ -99,7 +94,7 @@ CLOVE_TEST(FillNinePixelImage_WithOnlyFivePixelsFilled)
     CLOVE_INT_EQ(255, filled[16]);
     CLOVE_INT_EQ(  0, filled[17]);
 
-    // Row 3
+    //Row3
     CLOVE_INT_EQ(  0, filled[18]);
     CLOVE_INT_EQ(  0, filled[19]);
     CLOVE_INT_EQ(255, filled[20]);

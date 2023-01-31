@@ -11,9 +11,9 @@ int main()
 
     unsigned char* data = stbi_load(file_name, &width, &height, &channels, 0);
 
-    printf("Width: %d, Height: %d, Channels: %d\n", width, height, channels);
+    printf("width: %d, height: %d, channels: %d\n", width, height, channels);
     int size = width * height * channels;
-    printf("Size: %d\n", size);
+    printf("size: %d\n", size);
 
     //stbi_image_free(data);
 
