@@ -1,0 +1,23 @@
+﻿  main.c
+Z:\Development\- Projects\C\SDL\- Repo\Nuklear\nuklear.h(8864,38): warning C4116: unnamed type definition in parentheses
+Z:\Development\- Projects\C\SDL\- Repo\Nuklear\nuklear.h(9489,44): warning C4116: unnamed type definition in parentheses
+Z:\Development\- Projects\C\SDL\- Repo\Nuklear\nuklear.h(9518,42): warning C4116: unnamed type definition in parentheses
+Z:\Development\- Projects\C\SDL\- Repo\Nuklear\nuklear.h(9629,43): warning C4116: unnamed type definition in parentheses
+Z:\Development\- Projects\C\SDL\- Repo\Nuklear\nuklear.h(9826,46): warning C4116: unnamed type definition in parentheses
+Z:\Development\- Projects\C\SDL\- Repo\Nuklear\nuklear.h(10045,42): warning C4116: unnamed type definition in parentheses
+Z:\Development\- Projects\C\SDL\- Repo\Nuklear\nuklear.h(16469,41): warning C4116: unnamed type definition in parentheses
+Z:\Development\- Projects\C\SDL\- Repo\Nuklear\nuklear.h(16470,42): warning C4116: unnamed type definition in parentheses
+Z:\Development\- Projects\C\SDL\- Repo\Nuklear\nuklear.h(16471,41): warning C4116: unnamed type definition in parentheses
+Z:\Development\- Projects\C\SDL\- Repo\Nuklear\nuklear.h(16472,42): warning C4116: unnamed type definition in parentheses
+Z:\Development\- Projects\C\SDL\- Repo\Nuklear\nuklear.h(16473,42): warning C4116: unnamed type definition in parentheses
+Z:\Development\- Projects\C\SDL\- Repo\Nuklear\nuklear.h(19292,42): warning C4116: unnamed type definition in parentheses
+Z:\Development\- Projects\C\SDL\- Repo\Nuklear\nuklear_sdl_renderer.h(115,35): warning C4116: unnamed type definition in parentheses
+Z:\Development\- Projects\C\SDL\- Repo\Nuklear\nuklear_sdl_renderer.h(144,37): warning C4244: '=': conversion from 'const float' to 'int', possible loss of data
+Z:\Development\- Projects\C\SDL\- Repo\Nuklear\nuklear_sdl_renderer.h(145,37): warning C4244: '=': conversion from 'const float' to 'int', possible loss of data
+Z:\Development\- Projects\C\SDL\- Repo\Nuklear\nuklear_sdl_renderer.h(146,37): warning C4244: '=': conversion from 'const float' to 'int', possible loss of data
+Z:\Development\- Projects\C\SDL\- Repo\Nuklear\nuklear_sdl_renderer.h(147,37): warning C4244: '=': conversion from 'const float' to 'int', possible loss of data
+Z:\Development\- Projects\C\SDL\- Repo\Nuklear\nuklear_sdl_renderer.h(175,38): warning C4244: 'function': conversion from 'nk_size' to 'int', possible loss of data
+C:\Users\acanf\Desktop\Project01\Project01\main.c(201,35): warning C4244: '=': conversion from 'float' to 'Uint8', possible loss of data
+C:\Users\acanf\Desktop\Project01\Project01\main.c(202,35): warning C4244: '=': conversion from 'float' to 'Uint8', possible loss of data
+C:\Users\acanf\Desktop\Project01\Project01\main.c(203,35): warning C4244: '=': conversion from 'float' to 'Uint8', possible loss of data
+  Project01.vcxproj -> C:\Users\acanf\Desktop\Project01\x64\Debug\Project01.exe
