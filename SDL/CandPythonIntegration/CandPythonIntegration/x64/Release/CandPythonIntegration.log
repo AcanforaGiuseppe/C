@@ -1,0 +1,8 @@
+﻿  main.c
+C:\Users\acanf\Desktop\CandPythonIntegration\CandPythonIntegration\main.c(56,49): warning C4113: 'PyObject *(__cdecl *)()' differs in parameter lists from 'PyObject *(__cdecl *)(void)'
+  Generating code
+  1 of 153 functions ( 0.7%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    8 functions had inline decision re-evaluated but remain unchanged
+  Finished generating code
+  CandPythonIntegration.vcxproj -> C:\Users\acanf\Desktop\CandPythonIntegration\x64\Release\CandPythonIntegration.exe
