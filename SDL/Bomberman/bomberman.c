@@ -262,11 +262,9 @@ int main(int argc, char** argv)
 
 		SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 		SDL_RenderClear(renderer);
-
 		SDL_Rect target_rect = { player.position.x, player.position.y, 32, 32 };
 		SDL_RenderCopy(renderer, texture, NULL, &target_rect);
 		SDL_RenderPresent(renderer);
 	}
-
 	return 0;
 }
