@@ -265,11 +265,11 @@ int main(int argc, char** argv)
 		SDL_Rect target_rect = { player.position.x, player.position.y, 32, 32 };
 		SDL_RenderCopy(renderer, texture, NULL, &target_rect);
 		SDL_RenderPresent(renderer);
-
-		free(window);
-		free(renderer);
-		free(texture);
-		SDL_Quit();
 	}
+	free(window);
+	free(renderer);
+	free(texture);
+	SDL_Quit();
+	
 	return 0;
 }
