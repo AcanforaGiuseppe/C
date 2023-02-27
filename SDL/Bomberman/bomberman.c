@@ -158,7 +158,7 @@ int bomberman_get_socket_infos(int s, char* info)
 	}
 }
 
-void bm_tp_player(player_t* player, int x, int y)
+void bm_tp_player(player_t* player, const int x, const int y)
 {
 	player->position.x = x;
 	player->position.y = y;
@@ -171,18 +171,18 @@ int main(int argc, char** argv)
 	player_t player;
 
 	// DeltaTime
-	double deltaT = 0;
-	Uint64 lastFrameT;
-	Uint64 currFrameT = 0;
+	double delta_time = 0;
+	Uint64 last_frame_time;
+	Uint64 current_frame_time = 0;
 
 	// - Debug only -
-	bool showDebug = true;
-	float clockTime = 1;
-	float clockCounter = clockTime;
+	bool show_debug = true;
+	float clock_time = 1;
+	float clock_counter = clock_time;
 
 	// Player Movements
-	int windowMultiplier = 100;
-	double deltaMovement = 0;
+	int window_multiplier = 100;
+	double delta_movement = 0;
 	char* coords[4096];
 	int x = -10;
 	int y = -10;
@@ -221,17 +221,17 @@ int main(int argc, char** argv)
 
 	while (running)
 	{
-		lastFrameT = currFrameT;
-		currFrameT = SDL_GetTicks64();
-		deltaT = (double)(currFrameT - lastFrameT) * 0.001;
+		last_frame_time = current_frame_time;
+		current_frame_time = SDL_GetTicks64();
+		delta_time = (double)(current_frame_time - last_frame_time) * 0.001;
 
-		if (showDebug)
+		if (show_debug)
 		{
-			clockCounter -= deltaT;
-			if (clockCounter <= 0)
+			clock_counter -= delta_time;
+			if (clock_counter <= 0)
 			{
-				clockCounter = clockTime;
-				printf("FPS: %f\n", 1 / deltaT);
+				clock_counter = clock_time;
+				printf("FPS: %f\n", 1 / delta_time);
 			}
 		}
 
@@ -244,11 +244,11 @@ int main(int argc, char** argv)
 
 		SDL_PumpEvents();
 		const Uint8* keys = SDL_GetKeyboardState(NULL);
-		deltaMovement = player.speed * windowMultiplier * deltaT;
-		player.position.x += (keys[SDL_SCANCODE_RIGHT] | keys[SDL_SCANCODE_D]) * (int)deltaMovement;
-		player.position.x -= (keys[SDL_SCANCODE_LEFT] | keys[SDL_SCANCODE_A]) * (int)deltaMovement;
-		player.position.y += (keys[SDL_SCANCODE_DOWN] | keys[SDL_SCANCODE_S]) * (int)deltaMovement;
-		player.position.y -= (keys[SDL_SCANCODE_UP] | keys[SDL_SCANCODE_W]) * (int)deltaMovement;
+		delta_movement = player.speed * window_multiplier * delta_time;
+		player.position.x += (keys[SDL_SCANCODE_RIGHT] | keys[SDL_SCANCODE_D]) * (int)delta_movement;
+		player.position.x -= (keys[SDL_SCANCODE_LEFT] | keys[SDL_SCANCODE_A]) * (int)delta_movement;
+		player.position.y += (keys[SDL_SCANCODE_DOWN] | keys[SDL_SCANCODE_S]) * (int)delta_movement;
+		player.position.y -= (keys[SDL_SCANCODE_UP] | keys[SDL_SCANCODE_W]) * (int)delta_movement;
 
 		bomberman_get_socket_infos(bm_socket, coords);
 		if (strcmp(coords, "Invalid") != 0)
@@ -265,6 +265,11 @@ int main(int argc, char** argv)
 		SDL_Rect target_rect = { player.position.x, player.position.y, 32, 32 };
 		SDL_RenderCopy(renderer, texture, NULL, &target_rect);
 		SDL_RenderPresent(renderer);
+
+		free(window);
+		free(renderer);
+		free(texture);
+		SDL_Quit();
 	}
 	return 0;
 }
